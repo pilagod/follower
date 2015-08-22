@@ -20,8 +20,8 @@ var express = require('express'),
  */
 router.post('/login', function (req, res, next) {
   var memberId = req.body.memberId,
-      latitude = req.body.latitude,
-      longitude = req.body.longitude;
+      latitude = req.body.latitude || undefined,
+      longitude = req.body.longitude || undefined;
 
   if (!location[memberId]) {
     location[memberId] = {

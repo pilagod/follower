@@ -20,7 +20,7 @@ function initMap() {
 
         google.maps.event.addListenerOnce(map, 'idle', function(){
             $('img[src^="https://graph.facebook.com"]').css({"border-radius": "80px"});
-            console.log($('img[src^="https://graph.facebook.com"]'));
+            // console.log($('img[src^="https://graph.facebook.com"]'));
         });
 
     })
