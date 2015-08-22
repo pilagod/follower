@@ -113,3 +113,19 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+
+.btn-block {
+  width: 400px !important;
+  margin-left: auto ;
+  margin-right: auto ;
+  margin-bottom: 20px;
+}
+
+.horizontal-vertical-center {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
