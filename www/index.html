@@ -8,105 +8,116 @@
 
   </body>
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
   <script type="text/javascript">
     $(document).ready(function () {
-      var data = {
-        "memberId": "1",
-        "latitude": "120",
-        "longitude": "130"
-      }
-      $.ajax({
-        url: "http://localhost:3000/apis/login",
-        method: "POST",
-        dataType: 'json',
-        data: data,
-        success: function () {
-        }
-      })
-
-      data = {
-        "memberId": "2",
-        "latitude": "240",
-        "longitude": "260"
-      }
-      $.ajax({
-        url: "http://localhost:3000/apis/login",
-        method: "POST",
-        dataType: 'json',
-        data: data,
-        success: function () {
-        }
-      })
-
-      data = {
-        "memberId": "3",
-        "latitude": "360",
-        "longitude": "390"
-      }
-      $.ajax({
-        url: "http://localhost:3000/apis/login",
-        method: "POST",
-        dataType: 'json',
-        data: data,
-        success: function () {
-        }
-      })
-
-      var data1 = {
-        "memberId": "1",
-        "memberName": "pilagod"
-      };
       var groupId;
-      $.ajax({
-        url: "http://localhost:3000/apis/group/new",
-        method: "POST",
-        dataType: 'json',
-        data: data1,
-        success: function (response) {
-          groupId = response.groupId;
-          console.log(groupId);
-          var data2 = {
-            "groupId": groupId,
-            "memberId": "2",
-            "memberName": "pilagoood"
-          };
-          $.ajax({
-            url: "http://localhost:3000/apis/group/add",
-            method: "POST",
-            dataType: "json",
-            data: data2,
-            success: function (response) {
-              var data3 = {
-                "groupId": groupId,
-                "memberId": "3",
-                "memberName": "pilagooo0d"
-              }
-              $.ajax({
-                url: "http://localhost:3000/apis/group/add",
-                method: "POST",
-                dataType: "json",
-                data: data3,
-                success: function (response) {
-                  console.log(response);
-                  var data4 = {
-                    "groupId": groupId,
-                    "memberId": '1'
-                  };
-                  $.ajax({
-                    url: "http://localhost:3000/apis/location/group",
-                    method: 'POST',
-                    dataType: 'json',
-                    data: data4,
-                    success: function (response) {
-                      console.log(response);
-                    }
-                  })
-                }
-              })
-            }
-          })
-        }
-      })
+      var socket = io.connect("http://localhost:3000");
+      socket.on("test", function (data) {
+        console.log(data);
+      });
+
+      // socket.on("test", function (data) {
+      //   console.log("data: ,", data);
+      // });
+      console.log(socket);
+
+      // var data = {
+      //   "memberId": "1",
+      //   "latitude": "120",
+      //   "longitude": "130"
+      // }
+      // $.ajax({
+      //   url: "http://localhost:3000/apis/login",
+      //   method: "POST",
+      //   dataType: 'json',
+      //   data: data,
+      //   success: function () {
+      //   }
+      // })
+      //
+      // data = {
+      //   "memberId": "2",
+      //   "latitude": "240",
+      //   "longitude": "260"
+      // }
+      // $.ajax({
+      //   url: "http://localhost:3000/apis/login",
+      //   method: "POST",
+      //   dataType: 'json',
+      //   data: data,
+      //   success: function () {
+      //   }
+      // })
+      //
+      // data = {
+      //   "memberId": "3",
+      //   "latitude": "360",
+      //   "longitude": "390"
+      // }
+      // $.ajax({
+      //   url: "http://localhost:3000/apis/login",
+      //   method: "POST",
+      //   dataType: 'json',
+      //   data: data,
+      //   success: function () {
+      //   }
+      // })
+      //
+      // var data1 = {
+      //   "memberId": "1",
+      //   "memberName": "pilagod"
+      // };
+      // $.ajax({
+      //   url: "http://localhost:3000/apis/group/new",
+      //   method: "POST",
+      //   dataType: 'json',
+      //   data: data1,
+      //   success: function (response) {
+      //     groupId = response.groupId;
+      //     console.log(groupId);
+      //     var data2 = {
+      //       "groupId": groupId,
+      //       "memberId": "2",
+      //       "memberName": "pilagoood"
+      //     };
+      //     $.ajax({
+      //       url: "http://localhost:3000/apis/group/add",
+      //       method: "POST",
+      //       dataType: "json",
+      //       data: data2,
+      //       success: function (response) {
+      //         var data3 = {
+      //           "groupId": groupId,
+      //           "memberId": "3",
+      //           "memberName": "pilagooo0d"
+      //         }
+      //         $.ajax({
+      //           url: "http://localhost:3000/apis/group/add",
+      //           method: "POST",
+      //           dataType: "json",
+      //           data: data3,
+      //           success: function (response) {
+      //             console.log(response);
+      //             var data4 = {
+      //               "groupId": groupId,
+      //               "memberId": '1'
+      //             };
+      //             $.ajax({
+      //               url: "http://localhost:3000/apis/location/group",
+      //               method: 'POST',
+      //               dataType: 'json',
+      //               data: data4,
+      //               success: function (response) {
+      //                 console.log(response);
+      //               }
+      //             })
+      //           }
+      //         })
+      //       }
+      //     })
+      //   }
+      // })
     });
   </script>
 </html>
