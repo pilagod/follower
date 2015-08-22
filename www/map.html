@@ -28,29 +28,14 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <title>Hello World</title>
         <style type="text/css">
-          html, body { height: 100%; margin: 0; padding: 0; }
-          #map { height: 100%; width: 100%; margin: 0 auto;}
+            html, body { height: 100%; margin: 0; padding: 0; }
+            #map { height: 100%; }
         </style>
     </head>
     <body>
-        <div id="deviceready"></div>
         <div id="map"></div>
     </body>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNM5FXVnYIkB9JVLIlec6FWGCiou2hd_4&callback=initMap"></script>
-    <script type="text/javascript">
-      var map;
-      function initMap() {
-        if (navigator.geolocation !== undefined) {
-          navigator.geolocation.getCurrentPosition(function (pos) {
-            map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: pos.coords.latitude, lng: pos.coords.longitude},
-              zoom: 16
-            });
-          });
-        }
-      }
-    </script>
-
-
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrhDgLJWqFnZa1jFT9qJ52om9JAfh9v8M&callback=initMap"></script>
+    <script type="text/javascript" src="js/map.js"></script>
 </html>
