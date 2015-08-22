@@ -14,15 +14,7 @@ var userId, userName;
            console.log(response);
            userId = response.id;
            userName = response.name;
-           FB.api(
-                "/" + userId + "/picture",
-                function (response) {
-                  if (response && !response.error) {
-                    /* handle the result */
-                    console.log(response);
-                  }
-                }
-            );
+
         });
         if (window.location.pathname.slice(1).split('.')[0] === "login") {
           window.location.href="/index.html";
@@ -42,8 +34,8 @@ var userId, userName;
   }(document, 'script', 'facebook-jssdk'));
 }());
 
-function fbGetLoginStatus(fn) {
-  FB.getLoginStatus(fn);
+function fbGetLoginStatus(callback) {
+  FB.getLoginStatus(callback);
 }
 
 function fbLogin() {
@@ -72,4 +64,11 @@ function fbLogout() {
       });
     }
   });
+}
+
+function fbGetProfileIcon(userId, callback) {
+  FB.api(
+    "/" + userId + "/picture",
+    callback
+  );
 }
