@@ -17,7 +17,7 @@ var userId, userName;
 
         });
         if (window.location.pathname.slice(1).split('.')[0] === "login") {
-          window.location.href="/index.html";
+          window.location.href="/map.html";
         }
       }
     })
@@ -45,7 +45,7 @@ function fbLogin() {
       console.log('Welcome!  Fetching your information.... ');
       FB.api('/me', function(response) {
         console.log('Successful login for: ' + response.name);
-        window.location.href="/index.html";
+        window.location.href="/map.html";
       });
     } else {
       // The person is not logged into Facebook, so we're not sure if
