@@ -4,6 +4,7 @@ var express = require('express'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
+    cors = require('cors'),
     apis = require('./routes/apis');
 
 var app = express();
@@ -23,6 +24,7 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/apis', apis);
@@ -34,8 +36,14 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+var clients = {};
+
 io.on('connection', function (socket) {
   console.log('a user connected');
+  socket.on('init', function (data) {
+    clients[data.id] = socket.id;
+    console.log(clients);
+  });
   console.log(socket.id);
   socket.broadcast.to(socket.id).emit('test', {message: "message"});
   socket.emit("test", {"test": "test"});

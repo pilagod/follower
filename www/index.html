@@ -36,9 +36,7 @@
       var groupId;
       var socket = io.connect("http://localhost:3000");
       console.log(socket);
-      socket.on("test", function (data) {
-        console.log(data);
-      });
+      socket.emit("init", {id: window.localStorage["userid"]});
 
       // socket.on("test", function (data) {
       //   console.log("data: ,", data);

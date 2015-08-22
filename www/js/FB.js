@@ -13,14 +13,26 @@
             window.localStorage["username"] = response.name;
             window.localStorage["userid"] = response.id;
             window.localStorage["picture"] = "https://graph.facebook.com/" + response.id + "/picture";
+            var data = {
+              "memberId": window.localStorage["userid"]
+            };
+            postLoginData(data).then(function (response) {
+              console.log(response);
+              if (url === "login") {
+                window.location.href = "/map.html";
+              }
+            });
+          });
+        } else {
+          var data = {
+            "memberId": window.localStorage["userid"]
+          };
+          postLoginData(data).then(function (response) {
+            console.log(response);
             if (url === "login") {
               window.location.href = "/map.html";
             }
           });
-        } else {
-          if (url === "login"){
-            window.location.href = "/map.html";
-          }
         }
       }
     });
@@ -51,11 +63,15 @@ function fbLogin() {
         window.localStorage["username"] = response.name;
         window.localStorage["userid"] = response.id;
         window.localStorage["picture"] = "https://graph.facebook.com/" + response.id + "/picture";
-        window.location.href="/map.html";
+        var data = {
+          "memberId": window.localStorage["userid"]
+        };
+        postLoginData(data).then(function (response) {
+          console.log(response);
+          window.location.href="/map.html";
+        })
       });
     } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
       window.location.href="/login.html";
     }
   }, {scope: "public_profile,email"});
@@ -70,4 +86,14 @@ function fbLogout() {
             });
         }
     });
+}
+
+function postLoginData (data) {
+  return $.ajax ({
+    url: "http://localhost:3000/apis/login",
+    method: "POST",
+    crossDomain: true,
+    dataType: "json",
+    data: data
+  })
 }

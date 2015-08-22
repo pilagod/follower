@@ -7,17 +7,36 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <title>Hello World</title>
+        <link rel="stylesheet" href="css/map.css" media="screen" charset="utf-8">
         <style type="text/css">
             html, body { height: 100%; margin: 0; padding: 0; }
-            #map { height: 50%; }
+            img[src^="https://graph.facebook.com"] { border-radius: 50%; }
         </style>
     </head>
     <body>
-        <div id="map"></div>
-        <div onclick="fbLogout()">Logout</div>
+      <header>
+      </header>
+      <div class="back">
+        <a href="/index.html">
+          <img src="img/map/back.png" alt="back"/>
+        </a>
+      </div>
+      <div id="map"></div>
+      <div class="main">
+        <!-- <div onclick="fbLogout()">Logout</div> -->
+      </div>
+      <div class="setting">
+        <img src="img/map/setting.png" alt="setting"/>
+      </div>
+      <footer>
+      </footer>
     </body>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrhDgLJWqFnZa1jFT9qJ52om9JAfh9v8M&callback=initMap"></script>
     <script type="text/javascript" src="js/map.js"></script>
     <script type="text/javascript" src="js/FB.js"></script>
+    <script type="text/javascript">
+      var height = $(window).height();
+      $('#map').height(height - 200);
+    </script>
 </html>
