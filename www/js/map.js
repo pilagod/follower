@@ -11,11 +11,21 @@ function initMap() {
             lng: position.coords.longitude
         };
         map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 12,
+            zoom: 18,
             center: pos,
-            mapTypeId: google.maps.MapTypeId.TERRAIN
+            shape:{coords:[17,17,18],type:'circle'},
+            mapTypeId: google.maps.MapTypeId.ROADMAP
         });
         addMarker(pos);
+        console.log(pos);
+
+        
+        var p = {
+            lat: 25.126158300000002,
+            lng: 121.44270929999998
+        };
+
+        addMarker(p);
     })
 }
 
@@ -23,7 +33,18 @@ function initMap() {
 function addMarker(location) {
     var marker = new google.maps.Marker({
         position: location,
-        map: map
+        map: map,
+        icon: {
+            url: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/p50x50/10565267_752269374837364_6175616971699387755_n.jpg?oh=82567023e76770d09ec29e6464a40a1c&oe=5642061A&__gda__=1447119434_6a8b77b2a0b284b00481ab3150d46df5",
+            //the size of the image is 32x32, 
+            //when you want to add a border you must add 2*borderWidth to the size
+            size:new google.maps.Size(50,50)
+        },
+        //define the shape
+        shape:{coords:[17,17,18],type:'circle'},
+        //set optimized to false otherwise the marker  will be rendered via canvas 
+        //and is not accessible via CSS
+        optimized:false
     });
     markers.push(marker);
 }
