@@ -71,10 +71,3 @@ function fbLogout() {
         }
     });
 }
-
-function fbGetProfileIcon(userId, callback) {
-    FB.api(
-        "/" + userId + "/picture",
-        callback
-    );
-}
