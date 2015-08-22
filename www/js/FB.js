@@ -1,6 +1,3 @@
-var userId, userName;
-
-
 (function () {
   window.fbAsyncInit = function() {
     FB.init({
@@ -10,17 +7,23 @@ var userId, userName;
     });
     FB.getLoginStatus(function (response) {
       if (response && response.status === "connected") {
-        FB.api('/me', function(response){
-           console.log(response);
-           userId = response.id;
-           userName = response.name;
-
-        });
-        if (window.location.pathname.slice(1).split('.')[0] === "login") {
-          window.location.href="/map.html";
+        var url = window.location.pathname.slice(1).split('.')[0];
+        if (!window.localStorage["userid"]) {
+          FB.api('/me', function (response) {
+            window.localStorage["username"] = response.name;
+            window.localStorage["userid"] = response.id;
+            window.localStorage["picture"] = "https://graph.facebook.com/" + response.id + "/picture";
+            if (url === "login") {
+              window.location.href = "/map.html";
+            }
+          });
+        } else {
+          if (url === "login"){
+            window.location.href = "/map.html";
+          }
         }
       }
-    })
+    });
     $(window).triggerHandler('fbAsyncInit');
   };
 
@@ -45,6 +48,9 @@ function fbLogin() {
       console.log('Welcome!  Fetching your information.... ');
       FB.api('/me', function(response) {
         console.log('Successful login for: ' + response.name);
+        window.localStorage["username"] = response.name;
+        window.localStorage["userid"] = response.id;
+        window.localStorage["picture"] = "https://graph.facebook.com/" + response.id + "/picture";
         window.location.href="/map.html";
       });
     } else {

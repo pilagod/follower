@@ -29,7 +29,7 @@
         <title>Hello World</title>
         <style type="text/css">
             html, body { height: 100%; margin: 0; padding: 0; }
-            #map { height: 100%; }
+            #map { height: 50%; }
         </style>
     </head>
     <body>
@@ -40,4 +40,7 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrhDgLJWqFnZa1jFT9qJ52om9JAfh9v8M&callback=initMap"></script>
     <script type="text/javascript" src="js/FB.js"></script>
     <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript">
+      console.log(window.localStorage["userid"]);
+    </script>
 </html>
