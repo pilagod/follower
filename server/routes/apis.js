@@ -201,4 +201,4 @@ router.post('/location/group', function (req, res, next) {
   res.json(result);
 });
 
-module.exports = router ;
+module.exports = router;
