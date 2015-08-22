@@ -6,8 +6,12 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     apis = require('./routes/apis');
 
-var test = "test";
 var app = express();
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+var http = require('http');
+var server = http.createServer(app);
+var io = require('socket.io')(server);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,6 +32,19 @@ app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
+});
+
+io.on('connection', function (socket) {
+  console.log('a user connected');
+  console.log(socket.id);
+  socket.broadcast.to(socket.id).emit('test', {message: "message"});
+  socket.emit("test", {"test": "test"});
+  socket.on("test", function (data) {
+    console.log("data: ,", data);
+  });
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
 });
 
 // error handlers
@@ -54,5 +71,22 @@ app.use(function(err, req, res, next) {
   });
 });
 
+function normalizePort(val) {
+  var port = parseInt(val, 10);
 
-module.exports = app;
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+server.listen(port);
+
+module.exports = server;
