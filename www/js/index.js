@@ -34,19 +34,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        var map;
-        if (navigator.geolocation !== undefined) {
-          $('#test').text(navigator.geolocation.getCurrentPosition ? "test": "undefined");
-          navigator.geolocation.getCurrentPosition(function (pos) {
-            $('#test').text("undefined");
-            map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: pos.coords.latitude, lng: pos.coords.longitude},
-              zoom: 8
-            });
-          }, function (error) {
-            $('#text').text("error");
-          });
-        }
+        
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
