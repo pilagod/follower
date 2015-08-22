@@ -17,15 +17,19 @@ function initMap() {
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
         addMarker(pos);
-        console.log(pos);
 
-        
         var p = {
             lat: 25.126158300000002,
             lng: 121.44270929999998
         };
 
         addMarker(p);
+        google.maps.event.addListenerOnce(map, 'idle', function(){
+            $('img[src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/p50x50/10565267_752269374837364_6175616971699387755_n.jpg?oh=82567023e76770d09ec29e6464a40a1c&oe=5642061A&__gda__=1447119434_6a8b77b2a0b284b00481ab3150d46df5"]').css({"border-radius": "80px"});
+            // do something only the first time the map is loaded
+            console.log($('img[src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/p50x50/10565267_752269374837364_6175616971699387755_n.jpg?oh=82567023e76770d09ec29e6464a40a1c&oe=5642061A&__gda__=1447119434_6a8b77b2a0b284b00481ab3150d46df5"]'));
+        });
+        
     })
 }
 
