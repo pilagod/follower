@@ -2,7 +2,7 @@
 // The markers are stored in an array.
 // The user can then click an option to hide, show or delete the markers.
 var map;
-var markers = [];
+var markers = {};
 
 function initMap() {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -17,6 +17,7 @@ function initMap() {
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
         addMarker(pos);
+        console.log(markers);
 
         google.maps.event.addListener(map,'zoom_changed', function () {
           var zoomLevel = map.getZoom() < 16 ? zoomLevel = 1 : zoomLevel = 2;
@@ -60,5 +61,6 @@ function addMarker(location) {
     marker.iconLevel1 = window.localStorage["picture"] + "?width=20";
     marker.iconLevel2 = window.localStorage["picture"] + "?width=35";
 
-    markers.push(marker);
+    // markers.push(marker);
+    markers[window.localStorage["userid"]] = marker;
 }

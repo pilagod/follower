@@ -36,8 +36,14 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+var clients = {};
+
 io.on('connection', function (socket) {
   console.log('a user connected');
+  socket.on('init', function (data) {
+    clients[data.id] = socket.id;
+    console.log(clients);
+  });
   console.log(socket.id);
   socket.broadcast.to(socket.id).emit('test', {message: "message"});
   socket.emit("test", {"test": "test"});
