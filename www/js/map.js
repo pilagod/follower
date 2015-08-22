@@ -18,10 +18,10 @@ function initMap() {
         });
         addMarker(pos);
 
-        google.maps.event.addListenerOnce(map, 'idle', function(){
-            $('img[src^="https://graph.facebook.com"]').css({"border-radius": "80px"});
-            // console.log($('img[src^="https://graph.facebook.com"]'));
-        });
+        // google.maps.event.addListenerOnce(map, 'idle', function(){
+        //     $('img[src^="https://graph.facebook.com"]').css({"border-radius": "80px"});
+        //     // console.log($('img[src^="https://graph.facebook.com"]'));
+        // });
 
     })
 }

@@ -10,11 +10,18 @@
         <style type="text/css">
             html, body { height: 100%; margin: 0; padding: 0; }
             #map { height: 50%; }
+            img[src^="https://graph.facebook.com"] { border-radius: 80px }
         </style>
     </head>
     <body>
+      <div class="main">
+        <header>
+        </header>
         <div id="map"></div>
-        <div onclick="fbLogout()">Logout</div>
+        <!-- <div onclick="fbLogout()">Logout</div> -->
+        <footer>
+        </footer>
+      </div>
     </body>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrhDgLJWqFnZa1jFT9qJ52om9JAfh9v8M&callback=initMap"></script>

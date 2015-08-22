@@ -6,7 +6,8 @@
     <meta name="msapplication-tap-highlight" content="no" />
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="css/login.css" media="screen" charset="utf-8">
     <title>Login</title>
   </head>
   <body>
@@ -15,21 +16,21 @@
       the JavaScript SDK to present a graphical Login button that triggers
       the FB.login() function when clicked.
     -->
-
-    <div
-      class="fb-like"
-      data-share="true"
-      data-width="450"
-      data-show-faces="true">
+    <div class="main">
+      <header>
+        <h1>Follow Up</h1>
+      </header>
+      <div class="background">
+        <img src="img/login/car.png" alt="" />
+      </div>
+      <div class="introduction">
+        <h2>No More Losing Track!</h2>
+        <h3>Accurate Positioning</h3>
+        <h3>Clear Route Display</h3>
+      </div>
+      <div class="fb-login" onclick="fbLogin()">Login</div>
     </div>
 
-    <div onclick="fbLogin()">Login</div>
-
-    <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-    </fb:login-button> -->
-
-    <div id="status">
-    </div>
   </body>
   <script type="text/javascript" src="cordova.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
