@@ -1,3 +1,5 @@
+var url = window.location.pathname.slice(1).split('.')[0];
+
 (function () {
   window.fbAsyncInit = function() {
     FB.init({
@@ -7,7 +9,6 @@
     });
     FB.getLoginStatus(function (response) {
       if (response && response.status === "connected") {
-        var url = window.location.pathname.slice(1).split('.')[0];
         if (!window.localStorage["userid"]) {
           FB.api('/me', function (response) {
             window.localStorage["username"] = response.name;
@@ -19,7 +20,7 @@
             postLoginData(data).then(function (response) {
               console.log(response);
               if (url === "login") {
-                window.location.href = "/map.html";
+                window.location.href = "/index.html";
               }
             });
           });
@@ -30,7 +31,7 @@
           postLoginData(data).then(function (response) {
             console.log(response);
             if (url === "login") {
-              window.location.href = "/map.html";
+              window.location.href = "/index.html";
             }
           });
         }
@@ -68,7 +69,7 @@ function fbLogin() {
         };
         postLoginData(data).then(function (response) {
           console.log(response);
-          window.location.href="/map.html";
+          window.location.href="/index.html";
         })
       });
     } else {
@@ -78,14 +79,17 @@ function fbLogin() {
 }
 
 function fbLogout() {
-    FB.getLoginStatus(function(response){
-        if (response && response.status === "connected") {
-            FB.logout(function (response) {
-                console.log("Logout: ", response);
-                window.location.href="/login.html";
-            });
-        }
-    });
+  FB.getLoginStatus(function(response){
+    if (response && response.status === "connected") {
+      FB.logout(function (response) {
+        console.log("Logout: ", response);
+        delete window.localStorage["username"];
+        delete window.localStorage["userid"];
+        delete window.localStorage["picture"];
+        window.location.href="/login.html";
+      });
+    }
+  });
 }
 
 function postLoginData (data) {
