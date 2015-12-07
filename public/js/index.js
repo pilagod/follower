@@ -175,31 +175,31 @@
     // });
   };
 
-  document.getElementById('join').onclick = function (e) {
-    e.preventDefault();
-    console.log('join onclick');
-
-    request({
-      url: config.HOST_API + '/group/joinGroup',
-      method: 'POST',
-      json: true,
-      body: { groupId: 'test' }
-    }, function (error, response, data) {
-      if (data.success) {
-        $('#friend').removeClass('hidden');
-        $('#leave').removeClass('hidden');
-
-        if (!updatePositionInterval) {
-          updatePositionInterval = setInterval(function () {
-            Map.getCurrentPosition().then(function (position) {
-              console.log('updatePosition');
-              socket.emit('updatePosition', { id: user.id, position: position });
-            });
-          }, 5000);
-        }
-      }
-    });
-  };
+  // document.getElementById('join').onclick = function (e) {
+  //   e.preventDefault();
+  //   console.log('join onclick');
+  // 
+  //   request({
+  //     url: config.HOST_API + '/group/joinGroup',
+  //     method: 'POST',
+  //     json: true,
+  //     body: { groupId: 'test' }
+  //   }, function (error, response, data) {
+  //     if (data.success) {
+  //       $('#friend').removeClass('hidden');
+  //       $('#leave').removeClass('hidden');
+  //
+  //       if (!updatePositionInterval) {
+  //         updatePositionInterval = setInterval(function () {
+  //           Map.getCurrentPosition().then(function (position) {
+  //             console.log('updatePosition');
+  //             socket.emit('updatePosition', { id: user.id, position: position });
+  //           });
+  //         }, 5000);
+  //       }
+  //     }
+  //   });
+  // };
 
   document.getElementById('leave').onclick = function (e) {
     e.preventDefault();
